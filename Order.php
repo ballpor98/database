@@ -66,26 +66,27 @@ $Billno=$_SESSION['bill'];
                       </select>
                   </td>
                   <td>number<input type="text" maxlength="2" name="num" id="num"></td>
-                  <td><input type="submit" value="Add" name="submit1" id="submit1" ></td>
+                  <td><input type="submit" value="Add" name="add" id="add" ></td>
                   </form>
                 </tr>
+                <?php
+                    $stmt = $db->query("SELECT * FROM billproduct WHERE BillNo =  ".$Billno);
+                    $stmt->execute();
+                    $result = $stmt->fetchAll();
+                    foreach($result as $runno){
+                      $stmt = $db->query("SELECT * FROM product WHERE ProdNo =  ".$runno['ProNo']);
+                      $stmt->execute();
+                      $temp = $stmt->fetch();
+                      $total = $temp['ProdPrice'] * $runno['Quantity'] ;
+                ?>
                 <tr>
-                  <th scope="row"></th>
-                  <td></td>
+                  <th scope="row"><?php echo $temp['ProdName'] ;?></th>
+                  <td><?php echo $temp['ProdPrice'] ;?></td>
+                  <td><?php echo $runno['Quantity'] ;?></td>
+                  <td><?php echo $total;?></td>
                 </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td>
-                  </td>
-                </tr>
+                <?php } ?>
+
               </table>
           </tr>
         </table></td>

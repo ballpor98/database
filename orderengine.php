@@ -20,5 +20,5 @@ $Quantity = $_POST['num'];
 		$stmt->execute(array($Billno,$prodno,$Quantity));
 		?>
 		Success
-		<meta http-equiv="refresh" content=13;URL=Order.php" />
+		<meta http-equiv="refresh" content=1;URL=Order.php" />
 	</html>
