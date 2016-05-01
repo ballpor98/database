@@ -17,7 +17,7 @@ if(isset($_SESSION['username'])){?>
       <h1>Employee Login</h1>
       <form action="Wait.php" method="post" name="loginform" target="_self" id="loginform">
         <input type="text" maxlength="30" name="username" id="username">
-        <button type="submit" value="login" name="login" id="login" >Login</button>
+        <button type="submit" value="login" name="login" id="login" class="bluegreen">Login</button>
       </form>
     </div>
   </body>

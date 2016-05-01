@@ -29,5 +29,46 @@ input,button{
 }
 button{
 	cursor: pointer;
-	margin:0 5 0 5;
+	margin:15px;
+}
+table{
+	margin: 0 auto;
+	line-height: 54px;
+}
+td{
+	padding: 0px 10px 0px 10px;
+}
+td:first-child{
+	font-weight: bold;
+	background-color: black;
+	color: #EEE;
+}
+td{
+	background-color:  #ffec80;
+}
+.green{
+	background-color: #95ba1c;
+	color: white;
+}
+.bluegreen{
+	background-color: #18abab;
+	color: white;
+}
+.white{
+	background-color: #fff;
+	color: #806c00;
+}
+.orange{
+	background-color: #e6621a;
+	color: white;
+}
+.menu button{
+	height: 100px;
+	width: 250px;
+	font-size: 1.6em;
+}
+.foot{
+	color: #666;
+	font-size: 1em;
+	line-height: 70px;
 }

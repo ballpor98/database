@@ -19,14 +19,14 @@ $db = new PDO('mysql:host=localhost;dbname=fruit', "fruit", "123456");
       #echo $stmt->rowCount()," ",$username;
       if($stmt->rowCount()==0)
       {
-      echo "<h3>รหัสผู้ใช้ไม่ถูกต้อง<p><a href=index.php>กลับหน้าlogin</a></h3>";
+      echo "<h3>Wrong user! Try again<p><a href=index.php>back</a></h3>";
       }
       else
       {
       $result = $stmt->fetchAll();
-      echo "<h1>สวัสดีคุณ ".$result[0]['EmpFirstName']." ".$result[0]['EmpLastName']."</h1>";
+      echo "<h1>Welcome!  ".$result[0]['EmpFirstName']." ".$result[0]['EmpLastName']."</h1>";
       $_SESSION['username'] =  $username;
-      echo "<h3>ท่านเข้าสู่ระบบแล้ว<p><a href=menu.php>ไปหน้าmenu</a> </h3>";
+      echo "<h3>Login successfully<p><a href=menu.php class='foot'>go to menu</a> </h3>";
       }
       ?>
     </div>
