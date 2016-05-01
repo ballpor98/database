@@ -21,5 +21,6 @@ $date = date("Y-m-d");
 		$stmt = $db->prepare("INSERT INTO member VALUES(?,?,?,?,?)");
 		$stmt->execute(array($member,$firstname,$lastname,$date,$branch));
 		?>
-		<meta http-equiv="refresh" content="1;URL=menu.php" />
+		Success
+		<meta http-equiv="refresh" content="3;URL=menu.php" />
 	</html>

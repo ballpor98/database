@@ -2,7 +2,20 @@
 session_start();
 date_default_timezone_set('UTC');
 $db = new PDO('mysql:host=localhost;dbname=fruit', "fruit", "123456");
-$Billno = rand(10000,99999);
+#unset($_SESSION['bill']);
+if(!isset($_SESSION['member']))
+  $_SESSION['member']=0;
+if(!isset($_SESSION['bill'])){
+  $Billno = rand(10000,99999);
+  $_SESSION['bill']=$Billno;
+  $stmt = $db->query("SELECT * FROM employee WHERE EmpNo =".$_SESSION['username']);
+  $stmt->execute();
+  $result = $stmt->fetchAll();
+  $branch =  $result[0]['BranchNo'];
+  $stmt = $db->prepare("INSERT INTO bill VALUES(?,?,?,?,?,?)");
+  $stmt->execute(array($Billno,date("Y-m-d"),$_SESSION['member'],$_SESSION['username'],$branch,0));
+}
+$Billno=$_SESSION['bill'];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -22,15 +35,39 @@ $Billno = rand(10000,99999);
             </td>
             <table width="300" border="0">
               <tr>
-                <th scope="col"></th>
-                <th scope="col"></th>
+                <th scope="col">BillNo</th>
+                <th scope="col"><?php echo $Billno;?></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
               </tr>
               <form action="orderengine.php" method="post" name="orderform" target="_self" id="orderform">
                 <tr>
-                  <th scope="row"></th>
-                  <td></td>
+                  <th scope="row">
+                    select juice
+                </th>
+                  <td>
+                    <?php 
+                      $stmt = $db->query("SELECT * FROM product");
+                      $stmt->execute();
+                      $result = $stmt->fetchAll();
+                      #print_r($result);
+                      //foreach($result as $product){
+                        //echo $product['ProdName'];
+                        #echo "<option value=\"1\">".$product['ProdName']."</option>";
+                      //}
+                      ?>
+                      <select name="product">
+                      <?php
+                      foreach($result as $product){
+                        //echo $product['ProdName'];
+                        echo "<option value=\"".$product['ProdNo']."\">".$product['ProdName']."</option>";
+                      }
+                      ?>
+                      </select>
+                  </td>
+                  <td>number<input type="text" maxlength="2" name="num" id="num"></td>
+                  <td><input type="submit" value="Add" name="submit1" id="submit1" ></td>
+                  </form>
                 </tr>
                 <tr>
                   <th scope="row"></th>
@@ -49,8 +86,7 @@ $Billno = rand(10000,99999);
                   <td>
                   </td>
                 </tr>
-              </table><input type="submit" value="submit" name="submit1" id="submit1" >
-            </form>
+              </table>
           </tr>
         </table></td>
       </tr>
