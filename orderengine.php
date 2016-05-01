@@ -18,7 +18,20 @@ $Quantity = $_POST['num'];
 		<?php
 		$stmt = $db->prepare("INSERT INTO billproduct VALUES(?,?,?)");
 		$stmt->execute(array($Billno,$prodno,$Quantity));
+
+		$stmt = $db->query("SELECT * FROM bill WHERE billNo =  ".$Billno);
+		$stmt->execute();
+        $temp = $stmt->fetch();
+        $total = $temp['BillTotal'];
+
+		$stmt = $db->query("SELECT * FROM product WHERE ProdNo =  ".$prodno);
+        $stmt->execute();
+        $temp = $stmt->fetch();
+        $total += $temp['ProdPrice'] * $Quantity;
+
+		$stmt = $db->prepare("UPDATE bill SET BillTotal = ? WHERE BillNo = ?");
+		$stmt->execute(array($total,$Billno));
 		?>
 		Success
-		<meta http-equiv="refresh" content=1;URL=Order.php" />
+		<meta http-equiv="refresh" content=1;URL=Order.php />
 	</html>

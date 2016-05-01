@@ -3,8 +3,8 @@ session_start();
 date_default_timezone_set('UTC');
 $db = new PDO('mysql:host=localhost;dbname=fruit', "fruit", "123456");
 #unset($_SESSION['bill']);
-if(!isset($_SESSION['member']))
-  $_SESSION['member']=0;
+#if(!isset($_SESSION['member']))
+$_SESSION['member']=0;
 if(!isset($_SESSION['bill'])){
   $Billno = rand(10000,99999);
   $_SESSION['bill']=$Billno;
@@ -12,8 +12,8 @@ if(!isset($_SESSION['bill'])){
   $stmt->execute();
   $result = $stmt->fetchAll();
   $branch =  $result[0]['BranchNo'];
-  $stmt = $db->prepare("INSERT INTO bill VALUES(?,?,?,?,?,?)");
-  $stmt->execute(array($Billno,date("Y-m-d"),$_SESSION['member'],$_SESSION['username'],$branch,0));
+  $stmt = $db->prepare("INSERT INTO bill VALUES(?,?,?,?,?,?,?)");
+  $stmt->execute(array($Billno,date("Y-m-d"),$_SESSION['member'],$_SESSION['username'],$branch,0,0));
 }
 $Billno=$_SESSION['bill'];
 ?>
@@ -65,7 +65,7 @@ $Billno=$_SESSION['bill'];
                       ?>
                       </select>
                   </td>
-                  <td>number<input type="text" maxlength="2" name="num" id="num"></td>
+                  <td><input type="text" maxlength="2" name="num" id="num"></td>
                   <td><input type="submit" value="Add" name="add" id="add" ></td>
                   </form>
                 </tr>
@@ -74,7 +74,7 @@ $Billno=$_SESSION['bill'];
                     $stmt->execute();
                     $result = $stmt->fetchAll();
                     foreach($result as $runno){
-                      $stmt = $db->query("SELECT * FROM product WHERE ProdNo =  ".$runno['ProNo']);
+                      $stmt = $db->query("SELECT * FROM product WHERE ProdNo =  ".$runno['ProdNo']);
                       $stmt->execute();
                       $temp = $stmt->fetch();
                       $total = $temp['ProdPrice'] * $runno['Quantity'] ;

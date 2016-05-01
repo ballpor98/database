@@ -20,7 +20,9 @@ $date = date("Y-m-d");
 		<?php
 		$stmt = $db->prepare("INSERT INTO member VALUES(?,?,?,?,?)");
 		$stmt->execute(array($member,$firstname,$lastname,$date,$branch));
+		unset($_SESSION['member']);
 		?>
+
 		Success
 		<meta http-equiv="refresh" content="3;URL=menu.php" />
 	</html>
