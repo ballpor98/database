@@ -1,2 +1,2 @@
 # database
-เว็บโง่ๆทำส่งอาจารย์
+Database just live in database 
