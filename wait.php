@@ -19,7 +19,7 @@ $db = new PDO('mysql:host=localhost;dbname=fruit', "fruit", "123456");
       #echo $stmt->rowCount()," ",$username;
       if($stmt->rowCount()==0)
       {
-      echo "<h3>Wrong user! Try again<p><a href=index.php>back</a></h3>";
+      echo "<h3>Wrong user! Try again<p><a href=index.php class='foot'>back</a></h3>";
       }
       else
       {
