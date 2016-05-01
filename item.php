@@ -73,7 +73,7 @@ $stockno=$_SESSION['stock'];
                     $stmt->execute();
                     $result = $stmt->fetchAll();
                     foreach($result as $runno){
-                      $stmt = $db->query("SELECT * FROM refitem WHERE ReftName =  ".$runno['ReftName']);
+                      $stmt = $db->query("SELECT * FROM refitem WHERE RefNo =  ".$runno['RefNo']);
                       $stmt->execute();
                       $temp = $stmt->fetch();
                       $total = $temp['RefPrice'] * $runno['Quantity'] ;
@@ -85,7 +85,7 @@ $stockno=$_SESSION['stock'];
                   <td><?php echo $total;?></td>
                 </tr>
                 <?php } ?>
-                <tr><form action="ordergoods.php" method="post" name="itemformout" target="_self" id="itemformout">
+                <tr><form action="menu.php" method="post" name="itemformout" target="_self" id="itemformout">
                   <th scope="row"></th>
                   <td></td>
                   <td><input type="submit" value="Request" name="gg" id="gg" ></td>
