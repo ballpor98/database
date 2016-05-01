@@ -92,7 +92,7 @@ $Billno=$_SESSION['bill'];
                   $temp = $stmt->fetch();
                   $total = $temp['BillTotal'];
                 ?>
-                <tr><form action="checkbill" method="post" name="orderformout" target="_self" id="orderformout">
+                <tr><form action="checkbill.php" method="post" name="orderformout" target="_self" id="orderformout">
                   <th scope="row">Total</th>
                   <td><?php echo $total; ?></td>
                   <td><input type="text" maxlength="5" name="member" id="member"></td>
