@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2016 at 07:26 PM
+-- Generation Time: May 01, 2016 at 05:49 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -44,7 +44,7 @@ CREATE TABLE `bill` (
 
 CREATE TABLE `billproduct` (
   `BillNo` int(5) NOT NULL,
-  `ProNo` int(5) NOT NULL,
+  `ProdNo` int(5) NOT NULL,
   `Quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -127,7 +127,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`ProdNo`, `ProdName`, `ProdPrice`, `ProdType`) VALUES
-(1, 'KiwiSoda', '75', 'ItalianSoda');
+(1, 'KiwiSoda', '75', 'ItalianSoda'),
+(2, 'SuperMix', '100', 'Smoothie');
 
 -- --------------------------------------------------------
 
@@ -186,6 +187,12 @@ CREATE TABLE `stockrefitem` (
 --
 ALTER TABLE `bill`
   ADD PRIMARY KEY (`BillNo`);
+
+--
+-- Indexes for table `billproduct`
+--
+ALTER TABLE `billproduct`
+  ADD PRIMARY KEY (`BillNo`,`ProdNo`);
 
 --
 -- Indexes for table `branch`

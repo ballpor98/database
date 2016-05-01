@@ -86,6 +86,21 @@ $Billno=$_SESSION['bill'];
                   <td><?php echo $total;?></td>
                 </tr>
                 <?php } ?>
+                <?php
+                  $stmt = $db->query("SELECT * FROM bill WHERE billNo =  ".$Billno);
+                  $stmt->execute();
+                  $temp = $stmt->fetch();
+                  $total = $temp['BillTotal'];
+                ?>
+                <tr><form action="checkbill" method="post" name="orderformout" target="_self" id="orderformout">
+                  <th scope="row">Total</th>
+                  <td><?php echo $total; ?></td>
+                  <td><input type="text" maxlength="5" name="member" id="member"></td>
+                  <td><input type="text" maxlength="5" name="promotion" id="promotion"></td>
+                  <td><input type="submit" value="checkbill" name="checkbill" id="checkbill" ></td>
+                  </form>
+                </tr>
+                
 
               </table>
           </tr>
