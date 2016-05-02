@@ -34,10 +34,8 @@ $stockno=$_SESSION['stock'];
             </td>
             <table width="300" border="0">
               <tr>
-                <th scope="col">StockNo</th>
-                <th scope="col"><?php echo $stockno;?></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
+                <td>StockNo</td>
+                <td colspan="3" style="background-color:black;text-align:center;"><?php echo $stockno;?></td>
               </tr>
               <form action="itemengine.php" method="post" name="itemform" target="_self" id="itemform">
                 <tr>
@@ -87,7 +85,7 @@ $stockno=$_SESSION['stock'];
                 <?php } ?>
                 <tr><form action="menu.php" method="post" name="itemformout" target="_self" id="itemformout">
                   <th></th>
-                  <td colspan="4" style="background-color:black"><input type="submit" value="Request" name="gg" id="gg" ></td>
+                  <td colspan="4" style="background-color:black;text-align:center;"><input type="submit" value="Request" name="gg" id="gg" ></td>
                   </form>
                 </tr>
                 
