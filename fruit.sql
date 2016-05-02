@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2016 at 07:26 PM
+-- Generation Time: May 02, 2016 at 05:58 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -44,7 +44,7 @@ CREATE TABLE `bill` (
 
 CREATE TABLE `billproduct` (
   `BillNo` int(5) NOT NULL,
-  `ProNo` int(5) NOT NULL,
+  `ProdNo` int(5) NOT NULL,
   `Quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -127,7 +127,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`ProdNo`, `ProdName`, `ProdPrice`, `ProdType`) VALUES
-(1, 'KiwiSoda', '75', 'ItalianSoda');
+(1, 'KiwiSoda', '75', 'ItalianSoda'),
+(2, 'SuperMix', '100', 'Smoothie');
 
 -- --------------------------------------------------------
 
@@ -151,6 +152,14 @@ CREATE TABLE `refitem` (
   `ReftName` text NOT NULL,
   `RefPrice` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `refitem`
+--
+
+INSERT INTO `refitem` (`RefNo`, `ReftName`, `RefPrice`) VALUES
+(1, 'blueberry', '200'),
+(2, 'strawberry', '250');
 
 -- --------------------------------------------------------
 
@@ -188,6 +197,12 @@ ALTER TABLE `bill`
   ADD PRIMARY KEY (`BillNo`);
 
 --
+-- Indexes for table `billproduct`
+--
+ALTER TABLE `billproduct`
+  ADD PRIMARY KEY (`BillNo`,`ProdNo`);
+
+--
 -- Indexes for table `branch`
 --
 ALTER TABLE `branch`
@@ -222,6 +237,18 @@ ALTER TABLE `promotion`
 --
 ALTER TABLE `refitem`
   ADD PRIMARY KEY (`RefNo`);
+
+--
+-- Indexes for table `stock`
+--
+ALTER TABLE `stock`
+  ADD PRIMARY KEY (`StockNo`);
+
+--
+-- Indexes for table `stockrefitem`
+--
+ALTER TABLE `stockrefitem`
+  ADD PRIMARY KEY (`StockNo`,`RefNo`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
