@@ -35,17 +35,15 @@ $Billno=$_SESSION['bill'];
             </td>
             <table width="300" border="0">
               <tr>
-                <th scope="col">BillNo</th>
-                <th scope="col"><?php echo $Billno;?></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
+                <td >BillNo</td>
+                <td  colspan="4" style="text-align:center;background-color:black;"><?php echo $Billno;?></td>
               </tr>
               <form action="orderengine.php" method="post" name="orderform" target="_self" id="orderform">
-                <tr>
-                  <th scope="row">
-                    select juice
-                </th>
-                  <td>
+                <tr >
+                  <td scope="row">
+                    select
+                </td>
+                  <td style="background-color:black">
                     <?php 
                       $stmt = $db->query("SELECT * FROM product");
                       $stmt->execute();
@@ -65,8 +63,8 @@ $Billno=$_SESSION['bill'];
                       ?>
                       </select>
                   </td>
-                  <td><input type="text" maxlength="2" name="num" id="num"></td>
-                  <td><input type="submit" value="Add" name="add" id="add" ></td>
+                  <td colspan="2" style="text-align:center;background-color:black;"><input type="text" maxlength="2" name="num" id="num"></td>
+                  <td style="background-color:black"><input type="submit" value="Add" name="add" id="add" ></td>
                   </form>
                 </tr>
                 <?php
@@ -93,11 +91,11 @@ $Billno=$_SESSION['bill'];
                   $total = $temp['BillTotal'];
                 ?>
                 <tr><form action="checkbill.php" method="post" name="orderformout" target="_self" id="orderformout">
-                  <th scope="row">Total</th>
-                  <td><?php echo $total; ?></td>
-                  <td><input type="text" maxlength="5" name="member" id="member"></td>
-                  <td><input type="text" maxlength="5" name="promotion" id="promotion"></td>
-                  <td><input type="submit" value="checkbill" name="checkbill" id="checkbill" ></td>
+                  <th>Total</th>
+                  <td style="background-color:black"><?php echo $total; ?> Bath</td>
+                  <td style="background-color:black"><input type="text" maxlength="5" name="member" id="member" value="MemberNO"></td>
+                  <td style="background-color:black"><input type="text" maxlength="5" name="promotion" id="promotion" value="PromotionNo"></td>
+                  <td style="background-color:black"><input type="submit" value="checkbill" name="checkbill" id="checkbill" ></td>
                   </form>
                 </tr>
                 

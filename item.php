@@ -19,7 +19,7 @@ $stockno=$_SESSION['stock'];
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>Order</title>
+    <title>Item</title>
     <link rel="stylesheet" type="text/css" href="css.css">
   </head>
   <body bgcolor="#FFFF80">
@@ -42,9 +42,9 @@ $stockno=$_SESSION['stock'];
               <form action="itemengine.php" method="post" name="itemform" target="_self" id="itemform">
                 <tr>
                   <th scope="row">
-                    select goods
+                    select
                 </th>
-                  <td>
+                  <td style="background-color:black">
                     <?php 
                       $stmt = $db->query("SELECT * FROM refitem");
                       $stmt->execute();
@@ -64,8 +64,8 @@ $stockno=$_SESSION['stock'];
                       ?>
                       </select>
                   </td>
-                  <td><input type="text" maxlength="2" name="num" id="num"></td>
-                  <td><input type="submit" value="Add" name="add" id="add" ></td>
+                  <td style="background-color:black"><input type="text" maxlength="2" name="num" id="num"></td>
+                  <td style="background-color:black"><input type="submit" value="Add" name="add" id="add" ></td>
                   </form>
                 </tr>
                 <?php
@@ -86,9 +86,8 @@ $stockno=$_SESSION['stock'];
                 </tr>
                 <?php } ?>
                 <tr><form action="menu.php" method="post" name="itemformout" target="_self" id="itemformout">
-                  <th scope="row"></th>
-                  <td></td>
-                  <td><input type="submit" value="Request" name="gg" id="gg" ></td>
+                  <th></th>
+                  <td colspan="4" style="background-color:black"><input type="submit" value="Request" name="gg" id="gg" ></td>
                   </form>
                 </tr>
                 
