@@ -23,28 +23,19 @@ $Billno=$_SESSION['bill'];
     <title>Order</title>
     <link rel="stylesheet" type="text/css" href="css.css">
   </head>
-  <body bgcolor="#FFFF80">
-    <table width="70%" border="0" align="center" cellpadding="10" cellspacing="0">
-      <tr>
-        <td align="center" bgcolor="#B1B1EF"></td>
-      </tr>
-      <tr>
-        <td align="center" valign="middle" bgcolor="#B1B1EF"><table width="30%" border="0" cellpadding="0" cellspacing="0">
-          <tr>
-            <td colspan="2" align="center" bgcolor="#FF8000">
-            </td>
-            <table width="300" border="0">
-              <tr>
-                <td >BillNo</td>
-                <td  colspan="4" style="text-align:center;background-color:black;"><?php echo $Billno;?></td>
-              </tr>
-              <form action="orderengine.php" method="post" name="orderform" target="_self" id="orderform">
-                <tr >
-                  <td scope="row">
-                    select
-                </td>
-                  <td style="background-color:black">
-                    <?php 
+  <body>
+    <div class="box">
+    <h1>Place Order</h1>
+      <table>
+        <tr>
+          <td>BillNo</td>
+          <td colspan="3"><?php echo $Billno;?></td>
+        </tr>
+        <tr>
+          <td>Select</td>
+          <td>
+             <form action="orderengine.php" method="post" name="orderform" target="_self" id="orderform">
+            <?php 
                       $stmt = $db->query("SELECT * FROM product");
                       $stmt->execute();
                       $result = $stmt->fetchAll();
@@ -62,12 +53,13 @@ $Billno=$_SESSION['bill'];
                       }
                       ?>
                       </select>
-                  </td>
-                  <td colspan="2" style="text-align:center;background-color:black;"><input type="text" maxlength="2" name="num" id="num"></td>
-                  <td style="background-color:black"><input type="submit" value="Add" name="add" id="add" ></td>
-                  </form>
-                </tr>
-                <?php
+                    </td>
+
+          <td><input type="text" maxlength="2" name="num" id="num"></td>
+          <td><button type="submit" value="Add" name="add" id="add" >add</button></td>
+        </form>
+        </tr>
+        <?php
                     $stmt = $db->query("SELECT * FROM billproduct WHERE BillNo =  ".$Billno);
                     $stmt->execute();
                     $result = $stmt->fetchAll();
@@ -78,7 +70,7 @@ $Billno=$_SESSION['bill'];
                       $total = $temp['ProdPrice'] * $runno['Quantity'] ;
                 ?>
                 <tr>
-                  <th scope="row"><?php echo $temp['ProdName'] ;?></th>
+                  <td><?php echo $temp['ProdName'] ;?></td>
                   <td><?php echo $temp['ProdPrice'] ;?></td>
                   <td><?php echo $runno['Quantity'] ;?></td>
                   <td><?php echo $total;?></td>
@@ -90,23 +82,16 @@ $Billno=$_SESSION['bill'];
                   $temp = $stmt->fetch();
                   $total = $temp['BillTotal'];
                 ?>
-                <tr><form action="checkbill.php" method="post" name="orderformout" target="_self" id="orderformout">
-                  <th>Total</th>
-                  <td style="background-color:black"><?php echo $total; ?> Bath</td>
-                  <td style="background-color:black"><input type="text" maxlength="5" name="member" id="member" value="MemberNO"></td>
-                  <td style="background-color:black"><input type="text" maxlength="5" name="promotion" id="promotion" value="PromotionNo"></td>
-                  <td style="background-color:black"><input type="submit" value="checkbill" name="checkbill" id="checkbill" ></td>
-                  </form>
-                </tr>
-                
-
-              </table>
-          </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td align="center" bgcolor="#FFFFFF">&nbsp;</td>
-      </tr>
-    </table>
+        <tr>
+          <td>Total</td>
+          <td><?php echo $total; ?> Bath</td>
+          <form action="checkbill.php" method="post" name="orderformout" target="_self" id="orderformout">
+          <td><input type="text" maxlength="5" name="member" id="member" placeholder="MemberNO"></td>
+          <td><input type="text" maxlength="5" name="promotion" id="promotion" placeholder="promotionNO"></td>
+        </tr>
+      <tr><td colspan="4" style="background-color:#ffec80;"><button class="bluegreen" type="submit" value="checkbill" name="checkbill" id="checkbill" >Checkbill</button></td></tr>
+        </form>
+      </table>
+    </div>
   </body>
 </html>

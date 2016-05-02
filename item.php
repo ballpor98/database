@@ -22,28 +22,25 @@ $stockno=$_SESSION['stock'];
     <title>Item</title>
     <link rel="stylesheet" type="text/css" href="css.css">
   </head>
-  <body bgcolor="#FFFF80">
-    <table width="70%" border="0" align="center" cellpadding="10" cellspacing="0">
-      <tr>
-        <td align="center" bgcolor="#B1B1EF"></td>
-      </tr>
-      <tr>
-        <td align="center" valign="middle" bgcolor="#B1B1EF"><table width="30%" border="0" cellpadding="0" cellspacing="0">
-          <tr>
-            <td colspan="2" align="center" bgcolor="#FF8000">
-            </td>
-            <table width="300" border="0">
-              <tr>
-                <td>StockNo</td>
-                <td colspan="3" style="background-color:black;text-align:center;"><?php echo $stockno;?></td>
-              </tr>
-              <form action="itemengine.php" method="post" name="itemform" target="_self" id="itemform">
-                <tr>
-                  <th scope="row">
-                    select
-                </th>
-                  <td style="background-color:black">
-                    <?php 
+
+  <body>
+    <div class="box">
+    <h1>Order Goods</h1>
+      <table>
+        <tr>
+          <td>
+            StockNo
+          </td>
+          <td colspan="3"><?php echo $stockno;?></td>
+        </tr>
+        <tr>
+           <td>
+            Select
+          </td>
+                        <form action="itemengine.php" method="post" name="itemform" target="_self" id="itemform">
+
+           <td>
+            <?php 
                       $stmt = $db->query("SELECT * FROM refitem");
                       $stmt->execute();
                       $result = $stmt->fetchAll();
@@ -61,12 +58,16 @@ $stockno=$_SESSION['stock'];
                       }
                       ?>
                       </select>
-                  </td>
-                  <td style="background-color:black"><input type="text" maxlength="2" name="num" id="num"></td>
-                  <td style="background-color:black"><input type="submit" value="Add" name="add" id="add" ></td>
-                  </form>
-                </tr>
-                <?php
+          </td>
+           <td>
+            <input type="text" maxlength="2" name="num" id="num">
+          </td>
+           <td>
+            <button type="submit" value="Add" name="add" id="add" >add</button>
+          </td>
+        </form>
+        </tr>
+        <?php
                     $stmt = $db->query("SELECT * FROM stockrefitem WHERE StockNo =  ".$stockno);
                     $stmt->execute();
                     $result = $stmt->fetchAll();
@@ -77,26 +78,20 @@ $stockno=$_SESSION['stock'];
                       $total = $temp['RefPrice'] * $runno['Quantity'] ;
                 ?>
                 <tr>
-                  <th scope="row"><?php echo $temp['ReftName'] ;?></th>
+                  <td><?php echo $temp['ReftName'] ;?></td>
                   <td><?php echo $temp['RefPrice'] ;?></td>
                   <td><?php echo $runno['Quantity'] ;?></td>
                   <td><?php echo $total;?></td>
                 </tr>
                 <?php } ?>
-                <tr><form action="menu.php" method="post" name="itemformout" target="_self" id="itemformout">
-                  <th></th>
-                  <td colspan="4" style="background-color:black;text-align:center;"><input type="submit" value="Request" name="gg" id="gg" ></td>
-                  </form>
-                </tr>
-                
-
-              </table>
-          </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td align="center" bgcolor="#FFFFFF">&nbsp;</td>
-      </tr>
-    </table>
+        <tr>
+          <form action="menu.php" method="post" name="itemformout" target="_self" id="itemformout">
+           <td colspan="4">
+            <button class="bluegreen" type="submit" value="Request" name="gg" id="gg" >Request</button>
+          </td>
+        </form>
+        </tr>
+      </table>
+    </div>
   </body>
 </html>

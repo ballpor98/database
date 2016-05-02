@@ -15,6 +15,7 @@ $Quantity = $_POST['num'];
 		<link rel="stylesheet" type="text/css" href="css.css">
 	</head>
 	<body bgcolor="#FFFF80">
+		<div class=box>
 		<?php
 		$stmt = $db->prepare("INSERT INTO billproduct VALUES(?,?,?)");
 		$stmt->execute(array($Billno,$prodno,$Quantity));
@@ -33,5 +34,6 @@ $Quantity = $_POST['num'];
 		$stmt->execute(array($total,$Billno));
 		?>
 		Success
+	</div>
 		<meta http-equiv="refresh" content=1;URL=Order.php />
 	</html>
